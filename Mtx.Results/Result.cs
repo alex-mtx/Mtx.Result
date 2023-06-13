@@ -9,6 +9,7 @@ public record Result(int StatusCode, string Message = "", Exception? Exception =
 	public static Result NoContent204() => new(Status204NoContent);
 	public static Result BadRequest400(string error = "") => new(Status400BadRequest, Message: error);
 	public static Result NotFound404() => new(Status404NotFound);
-	public static Result InternalError(string error = "", Exception? exception = default) => new(Status500InternalServerError, error, exception);
+	public static Result InternalError(string error, Exception? exception = default) => new(Status500InternalServerError, error, exception);
+	public static Result InternalErrorWithGenericErrorMessage(Exception? exception = default) => new(Status500InternalServerError, ResultResources.GenericError, exception);
 	public static implicit operator int(Result result) => result.StatusCode;
 }

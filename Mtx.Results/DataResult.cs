@@ -29,6 +29,8 @@ public record DataResult<T>
 	public static DataResult<T> InternalError(string error = "", Exception? exception = default) 
 		=> new(Status500InternalServerError, Message: error, Exception: exception);
 
+	public static DataResult<T> NoContent204(string error ="") => new(Status204NoContent, Message: error);
+
 	public static implicit operator T?(DataResult<T> result) => result.Contents;
 
 }
